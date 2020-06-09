@@ -7,12 +7,7 @@ const LoginForm = (props) => {
   return (
     <View testID={"login-form"}>
       <View style={styles.backgound}>
-        <TouchableOpacity
-          testID={"loginText"}
-          onPress={() => {
-            props.setModalVisible(false);
-          }}
-        >
+        <TouchableOpacity testID={"loginText"} onPress={() => props.showLogin}>
           <Text style={styles.sub}>Login</Text>
         </TouchableOpacity>
       </View>
@@ -24,8 +19,8 @@ const LoginForm = (props) => {
           placeholder="Email"
           keyboardType="email-address"
           underlineColorAndroid="transparent"
-          value={email}
-          onChangeText={(email) => setEmail(email)}
+          value={props.email}
+          onChangeText={(email) => props.setEmail(email)}
         />
       </View>
       <View style={styles.inputContainer}>
@@ -36,8 +31,8 @@ const LoginForm = (props) => {
           placeholder="Password"
           secureTextEntry={true}
           underlineColorAndroid="transparent"
-          value={password}
-          onChangeText={(password) => setPassword(password)}
+          value={props.password}
+          onChangeText={(password) => props.setPassword(password)}
         />
       </View>
       <View style={styles.backgound}>
@@ -45,7 +40,7 @@ const LoginForm = (props) => {
           testID={"submit"}
           style={styles.buttonContainer}
           onPress={() => {
-            onSubmithandler();
+            props.onLoginhandler();
           }}
         >
           <Text style={styles.submitText}>Submit</Text>

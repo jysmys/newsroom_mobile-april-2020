@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   premiumBlocker: {
     display: "flex",
     flexDirection: "column",
-    border: "2 solid grey",
+    // border: "2 solid grey",
     alignItems: "center",
     backgroundColor: "#409d9b",
     borderRadius: 3,

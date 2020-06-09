@@ -12,12 +12,13 @@ import * as RootNavigation from "../state/reducers/rootNavigation.js";
 const Footer = ({ dispatch }) => {
   let [fontsLoaded] = useFonts(fonts);
   const authenticated = useSelector((state) => state.authenticated);
+  const showLoginForm = useSelector((state) => state.showLoginForm);
   const uid = useSelector((state) => state.uid);
-  const [modalVisible, setModalVisible] = useState(false);
+  // const [modalVisible, setModalVisible] = useState(false);
 
   const showButton = authenticated ? (
     <>
-      <Text>Welcome, {uid}</Text>
+      {/* <Text>Welcome, {uid}</Text> */}
       <TouchableOpacity
         testID={"Logoutbutton"}
         onPress={async () => {
@@ -39,14 +40,17 @@ const Footer = ({ dispatch }) => {
     <TouchableOpacity
       testID={"Loginbutton"}
       onPress={() => {
-        setModalVisible(true);
+        dispatch({
+          type: "SHOW_LOGIN",
+          payload: { showLoginForm: true },
+        });
       }}
     >
       <Text style={styles.sub}>Login</Text>
     </TouchableOpacity>
   );
 
-  const modalShow = !modalVisible && (
+  const modalShow = !showLoginForm && (
     <>
       <Text style={styles.header}>DNS </Text>
       {showButton}
@@ -60,7 +64,7 @@ const Footer = ({ dispatch }) => {
       <View
         style={[
           styles.background,
-          modalVisible ? { backgroundColor: "rgba(0, 0, 0, 0.3)" } : "",
+          showLoginForm ? { backgroundColor: "rgba(0, 0, 0, 0.3)" } : "",
         ]}
       >
         <Modal
@@ -69,16 +73,12 @@ const Footer = ({ dispatch }) => {
           animationType={"slide"}
           backdropOpacity={1}
           transparent={true}
-          isVisible={modalVisible}
+          isVisible={showLoginForm}
           onRequestClose={() => {
             Alert.alert("Modal has been Opened.");
           }}
         >
-          <Login
-            visibleForm={modalVisible}
-            dispatch={dispatch}
-            setModalVisible={setModalVisible}
-          />
+          <Login visibleForm={showLoginForm} dispatch={dispatch} />
           <TouchableOpacity
             style={styles.background}
             onPress={() => RootNavigation.navigate("ArticleList")}
