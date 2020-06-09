@@ -13,34 +13,34 @@ describe("User can login", () => {
 
   describe("successfully", () => {
     beforeEach(() => {
-      cy.route({
-        method: "POST",
-        url: "**/auth/*",
-        response: "fixture:successful_login.json",
-        headers: {
-          uid: "user@mail.com",
-        },
-      });
-      cy.route({
-        method: "GET",
-        url: "**/auth/*",
-        response: "fixture:successful_login.json",
-        headers: {
-          uid: "user@mail.com",
-        },
-      });
-      cy.route({
-        method: "DELETE",
-        url: "**/auth/*",
-        response: "fixture:logout.json",
-        headers: {
-          uid: "user@mail.com",
-        },
-      });
+      //   cy.route({
+      //     method: "POST",
+      //     url: "**/auth/*",
+      //     response: "fixture:successful_login.json",
+      //     headers: {
+      //       uid: "user@mail.com",
+      //     },
+      //   });
+      //   cy.route({
+      //     method: "GET",
+      //     url: "**/auth/*",
+      //     response: "fixture:successful_login.json",
+      //     headers: {
+      //       uid: "user@mail.com",
+      //     },
+      //   });
+      //   cy.route({
+      //     method: "DELETE",
+      //     url: "**/auth/*",
+      //     response: "fixture:logout.json",
+      //     headers: {
+      //       uid: "user@mail.com",
+      //     },
+      //   });
 
       cy.get("[data-testid=Loginbutton]").click();
       cy.get("[data-testid=login-form]").within(() => {
-        cy.get("[data-testid=email]").type("user@mail.com");
+        cy.get("[data-testid=email]").type("subscriber@mail.com");
         cy.get("[data-testid=password]").type("password");
         cy.get("[data-testid=submit]").contains("Submit").click();
       });
@@ -51,7 +51,7 @@ describe("User can login", () => {
       cy.get("[data-testid=article-1]").should("exist");
     });
 
-    it("clicking the Log out button", () => {
+    xit("clicking the Log out button", () => {
       cy.get("[data-testid=Logoutbutton]").click();
       cy.get("[data-testid=Logoutbutton]").should("not.exist");
       cy.get("[data-testid=Loginbutton]").should("exist");
@@ -59,7 +59,7 @@ describe("User can login", () => {
     });
   });
 
-  describe("check window functionality", () => {
+  xdescribe("check window functionality", () => {
     it("check that the login pop up is working", () => {
       cy.get("[data-testid=Loginbutton]").click();
       cy.get("[data-testid=loginText]").should("exist").click();
@@ -67,7 +67,7 @@ describe("User can login", () => {
     });
   });
 
-  describe("unsuccessfully", () => {
+  xdescribe("unsuccessfully", () => {
     beforeEach(() => {
       cy.route({
         method: "POST",
