@@ -9,6 +9,16 @@ const rootReducer = (state = initialState, action) => {
         role: action.payload.role,
         uid: action.payload.uid,
       };
+    case "SHOW_LOGIN":
+      return {
+        ...state,
+        showLoginForm: action.payload.showLoginForm,
+      };
+    case "ERROR_MESSAGE":
+      return {
+        ...state,
+        errorMessage: action.payload.errorMessage,
+      };
     default:
       return state;
   }
