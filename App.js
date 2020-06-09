@@ -10,7 +10,8 @@ import { Provider } from "react-redux";
 import configureStore from "./src/state/store/configureStore";
 import { navigationRef } from "./src/state/reducers/rootNavigation";
 
-axios.defaults.baseURL = "http://newsroom-api.herokuapp.com/api";
+axios.defaults.baseURL = "https://newsroom-api.herokuapp.com/api";
+// axios.defaults.baseURL = "https://localhost:3000/api";
 const Stack = createStackNavigator();
 const store = configureStore();
 
@@ -27,7 +28,7 @@ const App = () => {
           <Footer />
         </NavigationContainer>
       </Provider>
-    </>
+    </> 
   );
 };
 
